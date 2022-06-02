@@ -1,4 +1,6 @@
 import { getStudents } from "../api/student";
+import { deleteStudent } from "../api/student";
+import reRender from "../helpers/reRender";
 
 const Student = {
     render: async () => { // đã đóng ngoặc nhọn phải có return ở trong
@@ -25,12 +27,35 @@ const Student = {
                         <div>MSV: ${student.msv}</div>
                         <div>
                             <a href="/students/${student.id}"><button class="btn btn-info">Chi tiết</button></a>
+                            <button class='btn btn-danger'
+                            data-id="${student.id}"
+                            data-name="${student.name}"
+                            data-xyz="123"
+                            >Xóa</button>
                         </div>
+
                     </div>`
                 )).join('')
             }
         </div>`
     },
+    afterRender: () => {
+        // Đây là nơi thực thi nghiệp vụ định nghĩa sự kiện xoá
+        // 1. Tìm toàn bộ nút xoá và thêm sự kiện click cho nó
+        const deleteBtns = document.querySelectorAll('.btn-danger');
+        deleteBtns.forEach((btn) => {
+            // addEventListener('tên sự kiện', khi sự kiện kích hoạt sẽ thực thi hàm)
+            btn.addEventListener('click', async () => {
+                // Tìm xem chúng ta muốn xoá thằng nào
+                // const data = btn.dataset; // {id: '', name: ''} với id ~ data-id, name ~ data-name
+                const btnId = btn.dataset.id;
+                // Thực hiện xoá
+                await deleteStudent(btnId);
+                // window.location.reload();
+                await reRender('#content', Student);
+            });
+        });
+    }
 };
 
 export default Student;

@@ -12,18 +12,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Khởi tạo đối tượng router
 const router = new Navigo('/', {linksSelector: 'a'});
 
-const render = async (content) => {
+const render = async (content, id) => {
+    // content sẽ là toàn bộ component
+    // cần thêm tham số vào hàm này để truyền id cho những phần detail
     document.querySelector('#header').innerHTML = Header.render();
-    document.querySelector('#content').innerHTML = await content;
+    document.querySelector('#content').innerHTML = await content.render(id);
     document.querySelector('#footer').innerHTML = Footer.render();
+
+    // Sau khi content đã render xong thì afterRender mới được chạy
+    if (content.afterRender) {
+        content.afterRender();
+    }
 }
 
 router.on({
-    '/': () => render(Home.render()),
-    '/about': () => render(About.render()),
-    '/news': () => render(News.render()),
-    '/students': () => render(Student.render()),
-    '/students/:id': (data) => render(StudentDetail.render(data.data.id)),
+    '/': () => render(Home),
+    '/about': () => render(About),
+    '/news': () => render(News),
+    '/students': () => render(Student),
+    '/students/:id': (data) => render(StudentDetail, data.data.id),
 });
 router.resolve();
 
@@ -140,12 +147,11 @@ let a = [];
 // console.log(a);
 // async/await
 
-const printA = async () => {
-    const result = await setValueA();
+// const printA = async () => {
+//     const result = await setValueA();
 
-    console.log('Chờ result nhận kết quả rồi mới ra log này', result);
-    result.push(4);
-    console.log('Sau khi thực hiện push ra kq này', result);
-};
+//     console.log('Chờ result nhận kết quả rồi mới ra log này', result);
+//     result.push(4);
+//     console.log('Sau khi thực hiện push ra kq này', result);
+// };
 
-printA();
