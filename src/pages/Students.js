@@ -33,6 +33,9 @@ const Student = {
                             data-xyz="123"
                             >Xóa</button>
                         </div>
+                        <div>
+                        <a href="/students/add"><button class="btn btn-success">Thêm mới</button></a>
+                        </div>
 
                     </div>`
                 )).join('')

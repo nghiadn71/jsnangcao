@@ -7,6 +7,7 @@ import About from './pages/About';
 import News from './pages/News';
 import Student from './pages/Students';
 import StudentDetail from './pages/StudentDetail';
+import StudentAdd from './pages/StudentAdd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Khởi tạo đối tượng router
@@ -31,6 +32,7 @@ router.on({
     '/news': () => render(News),
     '/students': () => render(Student),
     '/students/:id': (data) => render(StudentDetail, data.data.id),
+    '/students/add': () => render(StudentAdd),
 });
 router.resolve();
 
