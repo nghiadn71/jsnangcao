@@ -8,6 +8,9 @@ import News from './pages/News';
 import Student from './pages/Students';
 import StudentDetail from './pages/StudentDetail';
 import StudentAdd from './pages/StudentAdd';
+import ProductDetail from './pages/ProductDetail';
+import Product from './pages/ProductList';
+import ProductAdd from './pages/ProductAdd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Khởi tạo đối tượng router
@@ -31,8 +34,11 @@ router.on({
     '/about': () => render(About),
     '/news': () => render(News),
     '/students': () => render(Student),
-    '/students/:id': (data) => render(StudentDetail, data.data.id),
     '/students/add': () => render(StudentAdd),
+    '/students/detail/:id': (data) => render(StudentDetail, data.data.id),
+    '/products': () => render(Product),
+    '/product/add': () => render(ProductAdd),
+    '/product/detail/:id': (data) => render(ProductDetail, data.data.id),
 });
 router.resolve();
 

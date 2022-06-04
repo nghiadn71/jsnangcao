@@ -1,4 +1,5 @@
 import { getStudents } from "../api/student";
+import { getStudent } from "../api/student";
 import { deleteStudent } from "../api/student";
 import reRender from "../helpers/reRender";
 
@@ -26,7 +27,7 @@ const Student = {
                         <div>Name: ${student.name}</div>
                         <div>MSV: ${student.msv}</div>
                         <div>
-                            <a href="/students/${student.id}"><button class="btn btn-info">Chi tiết</button></a>
+                            <a href="/students/detail/${student.id}"><button class="btn btn-info">Chi tiết</button></a>
                             <button class='btn btn-danger'
                             data-id="${student.id}"
                             data-name="${student.name}"

@@ -27,6 +27,7 @@ const HeaderB = {
                 <li><a class="dropdown-item" href="/">Home</a></li>
                 <li><a class="dropdown-item" href="/news">News</a></li>
                 <li><a class="dropdown-item" href="/students">Students</a></li>
+                <li><a class="dropdown-item" href="/products">Products</a></li>
                 <li><a class="dropdown-item" href="/about">About</a></li>
             </ul>
         </div>
