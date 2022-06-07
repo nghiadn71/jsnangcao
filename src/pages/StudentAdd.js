@@ -1,29 +1,45 @@
 import { createStudent } from "../api/student";
+import { getStudent, updateStudent } from "../api/student";
+import router from "../helpers/router";
 const StudentAdd = {
-    render: () => {
+    render: async (id) => {
+        let student = {
+            name: '',
+            msv: '',
+            avatar: ''
+        };
+        if (id) {
+            const response = await getStudent(id);
+            student = response.data;
+        }
+        
         return (
             `<div>
                 <form>
                     <div class='form-group'>
                         <label>Tên</label>
-                        <input class='form-control' id='name' />
+                        <input value="${student.name}" class='form-control' id='name' />
                     </div>
                     <div class='form-group'>
                         <label>MSV</label>
-                        <input class='form-control' id='msv' />
+                        <input value="${student.msv}" class='form-control' id='msv' />
                     </div>
                     <div class='form-group'>
                         <label>Avatar</label>
-                        <input class='form-control' id='avatar' />
+                        <input value="${student.avatar}" class='form-control' id='avatar' />
                     </div>
                     <div class='form-group'>
-                        <button type='button' class='btn btn-success' id="btn">Tạo mới</button>
+                        <button type='button' class='btn btn-success' id="btn">
+                        ${id ? 'Cập nhật' : 'Tạo mới'}
+                        </button>
                     </div>
                 </form>
             </div>`
         )
     },
-    afterRender: () => {
+    afterRender: (id) => {
+        // console.log('after render:', id);
+
         const submitBtn = document.querySelector('#btn');
         submitBtn.addEventListener('click', async () => {
             const name = document.querySelector('#name').value;
@@ -35,9 +51,15 @@ const StudentAdd = {
                 msv: msv,
                 avatar: avatar,
             };
-            await createStudent(submitData);
-            window.location.replace('/students');
+            if (id) {
+                await updateStudent(id, submitData);
+            } else {
+                await createStudent(submitData);
+            }
+            
+            // window.location.replace('/students');
 
+            router.navigate('/students');
             console.log(submitData);
         });
     }

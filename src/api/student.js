@@ -10,3 +10,5 @@ export const deleteStudent = (id) => api.delete(`${prefix}/${id}`);
 
 // phương thức post của axios nhận 2 tham số là endpoint và dữ liệu
 export const createStudent = (data) => api.post(prefix, data);
+
+export const updateStudent = (id, data) => api.put(`${prefix}/${id}`, data);

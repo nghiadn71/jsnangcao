@@ -1,4 +1,4 @@
-import Navigo from '../node_modules/navigo';
+// import Navigo from '../node_modules/navigo';
 // import Navigo from 'navigo';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -12,9 +12,11 @@ import ProductDetail from './pages/ProductDetail';
 import Product from './pages/ProductList';
 import ProductAdd from './pages/ProductAdd';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import router from './helpers/router';
 
 // Khởi tạo đối tượng router
-const router = new Navigo('/', {linksSelector: 'a'});
+// const router = new Navigo('/', {linksSelector: 'a'});
+
 
 const render = async (content, id) => {
     // content sẽ là toàn bộ component
@@ -25,7 +27,7 @@ const render = async (content, id) => {
 
     // Sau khi content đã render xong thì afterRender mới được chạy
     if (content.afterRender) {
-        content.afterRender();
+        content.afterRender(id);
     }
 }
 
@@ -39,6 +41,7 @@ router.on({
     '/products': () => render(Product),
     '/product/add': () => render(ProductAdd),
     '/product/detail/:id': (data) => render(ProductDetail, data.data.id),
+    '/students/edit/:id': (data) => render(StudentAdd, data.data.id),
 });
 router.resolve();
 
