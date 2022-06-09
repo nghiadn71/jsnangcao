@@ -13,6 +13,7 @@ import Product from './pages/ProductList';
 import ProductAdd from './pages/ProductAdd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import router from './helpers/router';
+import CartDetail from './pages/CartDetail';
 
 // Khởi tạo đối tượng router
 // const router = new Navigo('/', {linksSelector: 'a'});
@@ -42,6 +43,7 @@ router.on({
     '/product/add': () => render(ProductAdd),
     '/product/detail/:id': (data) => render(ProductDetail, data.data.id),
     '/students/edit/:id': (data) => render(StudentAdd, data.data.id),
+    '/cart-detail': () => render(CartDetail),
 });
 router.resolve();
 

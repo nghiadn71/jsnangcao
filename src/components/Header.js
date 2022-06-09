@@ -1,4 +1,5 @@
 import Nav from './Nav';
+import Cart from './Cart';
 
 const HeaderB = {
     render: () => (
@@ -30,6 +31,8 @@ const HeaderB = {
                 <li><a class="dropdown-item" href="/products">Products</a></li>
                 <li><a class="dropdown-item" href="/about">About</a></li>
             </ul>
+            <a href="/cart-detail"><div id='cart'>${Cart.render()}</div></a>
+            
         </div>
         `
     )

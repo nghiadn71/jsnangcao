@@ -7,6 +7,6 @@ const reRender = async (elementRender, content, id) => {
     if (content.afterRender) {
         content.afterRender();
     }
-}
+};
 
 export default reRender;
